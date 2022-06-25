@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Krypton</title>
+
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<body>
+
+    <div id="pageloader" class="pageloader is-left-to-right is-theme"></div>
+    <div id="infraloader" class="infraloader is-active"></div>    
+    <div class="dark-wrapper">
+        <!-- Landing page Hero -->
+        <section class="hero is-fullheight is-transparent">
+            <div class="hero-head">
+    
+                <!-- Cloned navbar -->
+                <!-- Cloned navbar that comes in on scroll -->
+                <nav x-data="initNavbar()"  x-on:scroll.window="scroll()" id="navbar-clone" class="navbar is-fixed is-dark" :class="{
+                        'is-active': scrolled,
+                        '': !scrolled
+                    }">
+                    <div class="container">
+                        <!-- Brand -->
+                        <div class="navbar-brand">
+                            <a href="index.html" class="navbar-item">
+                                <img class="" src="/img/logo/sato.svg" alt="">
+                                <span class="brand-name">SATOVERSE.IO</span>
+                            </a>
+                            <!-- Responsive toggle -->
+                            <div class="navbar-burger" @click="openMobileMenu()">
+                                <div class="menu-toggle">
+                                    <span class="icon-box-toggle" :class="{
+                                            'active': mobileOpen,
+                                            '': !mobileOpen
+                                        }">
+                                        <span class="rotate">
+                                            <i class="icon-line-top"></i>
+                                            <i class="icon-line-center"></i>
+                                            <i class="icon-line-bottom"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                                <!-- Menu -->
+                        <div id="navbarMenu" class="navbar-menu light-menu" :class="{
+                                'is-active': mobileOpen,
+                                '': !mobileOpen
+                            }">
+                            <div class="navbar-end">
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#about_sato">About SATO</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#roadmap">Roadmap</a>
+                                </div>
+                		<!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#sato_wallet">Wallet</a>
+                                </div>
+                
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#mining">Mining</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="https://satox.plorer.online/">Explorer</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="https://discord.gg/PTfwn4sZhF" target="_blank">
+                                        <img class="telegram" src="/img/logo/telegram.svg" alt="">
+                                        Join our Discord
+                                    </a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="navbar-item">
+                                    <a href="/whitepaper.html" class="button k-button k-primary raised has-gradient slanted">
+                                        <span class="text">Whitepaper</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- /Cloned navbar -->
+    
+                <!-- Static navbar -->
+                <!-- Static navbar -->
+                <nav x-data="initNavbar()" class="navbar is-light" :class="{
+                        'is-dark-mobile': mobileOpen,
+                        '': !mobileOpen
+                    }">
+                    <div class="container">
+                        <!-- Brand -->
+                        <div class="navbar-brand">
+                            <a href="index.html" class="navbar-item">
+                                <img class="" src="/img/logo/sato.svg" alt="">
+                                <span class="brand-name">SATOVERSE.IO</span>
+                            </a>
+                            <!-- Responsive toggle -->
+                            <div class="navbar-burger" @click="openMobileMenu()">
+                                <div class="menu-toggle">
+                                    <span class="icon-box-toggle" :class="{
+                                            'active': mobileOpen,
+                                            '': !mobileOpen
+                                        }">
+                                        <span class="rotate">
+                                            <i class="icon-line-top"></i>
+                                            <i class="icon-line-center"></i>
+                                            <i class="icon-line-bottom"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Menu -->
+                        <div id="navbarMenu" class="navbar-menu light-menu" :class="{
+                                'is-active': mobileOpen,
+                                '': !mobileOpen
+                            }">
+                            <div class="navbar-end">
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#about_sato">About SATO</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#roadmap">Roadmap</a>
+                                </div>
+                		<!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#sato_wallet">Wallet</a>
+                                </div>
+                
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#mining">Mining</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="https://satox.plorer.online/">Explorer</a>
+                		</div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="https://discord.gg/PTfwn4sZhF" target="_blank">
+                                        <img class="telegram" src="/img/logo/telegram.svg" alt="">
+                                        Join our Discord
+                                    </a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="navbar-item">
+                                    <a href="/whitepaper.html" class="button k-button k-primary raised has-gradient slanted">
+                                        <span class="text">Whitepaper</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- /Static navbar -->
+    
+            </div>
+    
+            <!-- Animated particles -->
+            <div x-data="initHero()" x-init="initParticles()" id="particles-js"></div>
+    
+            <!-- Hero Image and Title -->
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-vcentered">
+    
+                        <!-- Landing page Title -->
+                        <div class="column is-5 landing-caption">
+                            <h1 class="title is-1 is-light is-semibold is-spaced main-title">SATO</h1>
+                            <h2 class="subtitle is-5 is-light is-thin">
+                                Cryptocurrency brought to the next level.</br>Join our Community.
+                            </h2>
+                            <!-- CTA -->
+                            <p class="buttons">
+                                <a href="#mining" class="button k-button k-primary raised has-gradient is-fat is-bold">
+                                    <span class="text">Start mining</span>
+                                    <span class="front-gradient"></span>
+                                </a>
+                                <a href="#about_sato" class="button k-button k-primary raised has-gradient is-fat is-bold">
+                                    <span class="text">About SATO</span>
+                                    <span class="front-gradient"></span>
+                                </a>
+                            </p>
+    
+                        </div>
+                        <!-- Hero image -->
+                        <div class="column is-7">
+                            <figure class="image">
+                                <img src="/img/illustrations/buildings.svg" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Hero footer -->
+            <div class="hero-foot">
+                <div class="container">
+                    <div class="tabs is-centered">
+                        <!-- Client / partner list -->
+                        <ul>
+                            <li><a><img class="hero-logo" src="/img/clients/coinpaprika.svg" alt=""></a></li>
+                            <li><a><img class="hero-logo" src="/img/clients/miningpoolstats.svg" alt=""></a></li>
+    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Landing page Hero -->
+    
+              
+           
+        </section>
+        <!-- /Icon Features section -->
+    
+        <!-- Side Features section -->
+        <section id="big-gradient" class="section is-transparent">
+            <!-- Container -->
+            <div class="container">
+                <!-- Divider -->
+    <!-- <div class="divider is-centered"></div> -->
+                <!-- Title & subtitle -->
+    <!--            <h2 class="title is-light is-semibold has-text-centered is-spaced">Decentralized Exchange</h2>-->
+    <!--            <h4 class="subtitle is-6 is-light has-text-centered is-compact">bla bla bla</h4>-->
+    
+    
+    
+                <!-- Content wrapper -->
+    	<a id="about_sato">
+                <div class="content-wrapper is-large">
+                    <div class="columns is-vcentered">
+    
+                        <!-- Feature content -->
+                        <div class="column is-5 is-offset-1">
+                            <div class="side-feature-content">
+    
+                                <h3 class="title is-4 is-light">What is SATO?</h3>
+                                <p class="is-light">
+    KAWPOW is a mining algorithm mainly known to people mining RAVENCOIN. It also supports other cryptocurrencies, like our SATO. The algorithm is protected against ASIC which leads to potential centralization. SATO is a digital or virtual currency that is secured by cryptography, which makes it nearly impossible to counterfeit or double-spend. Many cryptocurrencies are decentralized networks based on blockchain technology distributed ledger enforced by a disparate network of computers. A defining feature of cryptocurrencies is that they are generally not issued by any central authority, rendering them theoretically immune to government interference or manipulation.</p>
+                                
+                            </div>
+                        </div>
+    
+                        <!-- Feature image -->
+                        <div class="column is-7">
+                            <img class="side-feature" src="/img/illustrations/token.svg" alt="">
+                        </div>
+                    </div>
+    
+                    <div class="columns is-vcentered">
+                        <!-- Feature image desktop -->
+                        <div class="column is-7 is-hidden-mobile">
+                            <img class="side-feature" src="/img/illustrations/blockchain-blocks.svg" alt="">
+                        </div>
+    
+                        <!-- Feature content -->
+                        <div class="column is-5 is-offset-1">
+                            <div class="side-feature-content">
+    
+    <h3 class="title is-4 is-light"><span>Coin Specifications</span></h3>
+    <p class="is-light">
+    
+    Name: Sato</br>
+    Ticker: SATO</br>
+    Algorithm: KawPoW</br>
+    Type: PoW</br>
+    Total supply: 8,000,000,000 SATO AFTER BLOCK 320.000 </br>(previous total supplywas 30,000,000,000 SATO</br>
+    Premine: 1,500,000 SATO 0.002%</br>
+    Block time: 60 seconds</br>
+    Retarget Algorithm: DGW</br>
+    Instamine Protection: 1000 Blocks</br>
+    rpc port=3333</br>
+    p2p port=3334</br>
+    halving every 4 years</br>
+    </p>
+                                <div class="cta-wrapper">
+                                    <a href="#" class="button k-button k-primary raised has-gradient is-bold">
+                                        <span class="text">Whitepaper</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+    
+    
+                        <!-- Feature image only for mobile -->
+                        <div class="column is-7 is-hidden-desktop is-hidden-tablet">
+                            <img class="side-feature" src="/img/illustrations/blockchain-blocks.svg" alt="">
+                        </div>
+                    </div>
+    
+    
+    		<a id="mining">
+                     
+       
+                    <div class="columns is-vcentered">
+    
+    
+    
+    
+    		<!-- Feature content -->
+                        <div class="column is-5 is-offset-1">
+                            <div class="side-feature-content">
+    
+    
+                                <h3 class="title is-4 is-light">Crypto Mining</h3>
+                                <p class="is-light">Start mining SATO today!</p>
+                               <p class="is-light">SATO uses KAWPOW, its easy to mine with T-Rex & HiveOS. </p>
+                                <div class="cta-wrapper is-1 of 2">
+                                    <a href="https://github.com/trexminer/T-Rex/releases" class="button k-button k-primary raised has-gradient is-bold">
+                                        <span class="text">Download T-Rex</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+    
+    			    <div class="cta-wrapper is-2 of 2">
+                                    <a href="https://hiveon.com/os/" class="button k-button k-primary raised has-gradient is-bold">
+                                        <span class="text">Download HiveOS</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+    
+                            </div>
+                        </div>
+    
+                        <!-- Feature image -->
+                        <div class="column is-7">
+                            <img class="side-feature" src="/img/illustrations/crypto-mining.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- /Content wrapper -->
+            </div>
+            <!-- /Container -->
+        </section>
+        <!-- /Side Features section -->
+    
+        
+    
+        <!-- App section -->
+        <section class="content-wrapper is-large">
+            <!-- Container -->
+            <div class="container">
+               
+                <!-- Content wrapper -->
+    	    <a id="sato_wallet">
+                <div class="content-wrapper is-large">
+    
+                    <!-- Row -->
+    
+    
+    
+                    <div class="columns is-vcentered">
+                        <div class="column is-5 is-offset-1">
+                            <!-- Side feature -->
+                            <div class="side-feature-content">
+                                <!-- Title -->
+                                <h3 class="title is-4 is-light">Download our SATO Wallet</h3>
+                                <!-- Divider -->
+                                <p class="is-light">Click here to download the latest release.</p>
+                                <!-- CTA -->
+                                <div class="cta-wrapper">
+                                    <a href="https://github.com/satoverse/sato" class="button k-button k-primary raised has-gradient is-fat is-bold">
+                                        <span class="text">Download wallet</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Featured image -->
+                        <div class="column is-7">
+                            <img class="side-feature" src="/img/illustrations/krypton-app.svg" alt="">
+                        </div>
+                    </div>
+    
+                </div>
+                <!-- /Content wrapper -->
+            </div>
+            <!-- /Container -->
+        </section>
+        <!-- /App section -->
+    
+       
+    
+    <div class="roadmap-wrapper">
+        <!-- Landing page Hero -->
+        <section class="hero is-medium">
+    	
+    	<a id="#roadmap">
+    
+            <div class="hero-body has-text-centered">
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
+                        
+                        <h1 class="title is-2 is-light is-semibold is-spaced main-title">History</h1>
+                        <h2 class="subtitle is-5 is-light is-thin">
+    
+                            Community cryptocurrency brought to the next level.
+                        </h2>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section x-data="initRoadmap()" x-init="setupRoadmap()" id="roadmap" class="main-timeline">
+    
+    	<ul>
+    	    <li>
+                    <div>
+                        <span class="item-title">12 February 2021</span>
+                        <time></time> 
+                        <span class="item-content">
+                            Was SATO created and listed on miningpoolstats.
+                        
+                    </div>
+                </li>
+    
+                <li>
+                    <div>
+                        <span class="item-title">SATO - Community Discord started</span>
+                        <time></time> 
+                        <span class="item-content">
+                            We had enough with coinowners that abandon coins, we started a new SATO Community Discord server.
+                        
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span class="item-title">SATO - Explorer</span>
+                        <time></time> 
+                        <span class="item-content">
+                            We started to work on a new SATO explorer - https://satox.plorer.online
+                        </span>
+                        
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span class="item-title">New Homepage</span>
+                        <time></time> 
+                        <span class="item-content">
+                            We started to work on this new homepage,
+                        </span>
+                    </div>
+                </li>
+                
+    <li>
+                    <div>
+                        <span class="item-title">SATO Listed on RAVENDAX</span>
+                        <time></time> 
+                        <span class="item-content">
+                            SATO listed on the Exchange RAVENDAX - https://www.ravendax.com.
+                        </span>
+                    </div>
+                </li>
+    
+     <div class="hero-body has-text-centered">
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
+                        <div class="roadmap-image">
+                            <img src="/img/illustrations/world.svg">
+                        </div>
+                        <h1 class="title is-2 is-light is-semibold is-spaced main-title">Future Roadmap</h1>
+                        <h2 class="subtitle is-5 is-light is-thin">
+                            
+                        </h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section x-data="initRoadmap()" x-init="setupRoadmap()" id="roadmap" class="main-timeline">
+            <ul>
+                <li>
+                    <div>
+                        <span class="item-title">Discord Tipbot</span>
+                        <time></time> 
+                        <span class="item-content">
+                           
+                        
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span class="item-title">DEX Listing</span>
+                        <time></time> 
+                        <span class="item-content">
+                            
+                        </span>
+                        
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span class="item-title">Mobile Wallet</span>
+                        <time></time> 
+                        <span class="item-content">
+    
+                        </span>
+                    </div>
+                </li>
+    
+    <li>
+                    <div>
+                        <span class="item-title">More DEX Listings</span>
+                        <time></time> 
+                        <span class="item-content">
+                            
+                        </span>
+                        
+                    </div>
+                </li>
+    
+            </ul>
+        </section>
+    
+        <section>
+            <div class="roadmap-end">
+                <img src="/img/illustrations/roadmap-end.svg" alt="">
+            </div>
+    
+        </section>
+    
+    </div>
+    
+    
+     <!-- Company section -->
+        <section class="section is-medium has-big-dark-gradient">
+            <!-- Container -->
+            <div class="container">
+    
+                    <!-- Title & subtitle -->
+                    <h2 class="title is-light is-semibold has-text-centered is-spaced">Team</h2>
+                    <h4 class="subtitle is-6 is-light has-text-centered is-compact">We are the team.</h4>
+    
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper is-large">
+                        <div class="columns is-vcentered is-multiline">
+    
+                            <!-- Advisor -->
+                            <div class="column is-one-third">
+                                <div class="advisor-container has-text-centered">
+                                    <div class="info">
+                                        <div class="subtitle is-6 is-light is-compressed">pform</div>
+                                        <div class="position">Team Member</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Advisor -->
+                            <div class="column is-one-third">
+                                <div class="advisor-container has-text-centered">
+                                    <div class="info">
+                                        <div class="subtitle is-6 is-light is-compressed">Polymathdanny</div>
+                                        <div class="position">Team Member</div>
+                                    </div>
+                                </div>
+                            </div>
+     			<!-- Advisor -->
+                            <div class="column is-one-third">
+                                <div class="advisor-container has-text-centered">
+                                    <div class="info">
+                                        <div class="subtitle is-6 is-light is-compressed"></div>
+                                        <div class="position"></div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            
+                        </div>
+                    </div>
+                    <!-- /Content wrapper -->
+    
+                
+                    
+    
+                </div>
+                <!-- /Content wrapper -->
+            </div>
+        </section>
+        <!-- /Company section -->
+    
+    
+    
+    <footer class="krypton-footer">
+        <div class="container">
+            <!-- Logo -->
+            <div class="footer-logo">
+                <a href="#">
+                    <img class="" src="/img/logo/sato.svg" alt="">
+                    <div class="brand-name">SATOVERSE.IO</div>
+                    <div class="brand-subtitle">Blockchain brought to another level</div>
+                </a>
+            </div>
+    
+            </br>            
+               
+            </div>
+            <!-- Copyright -->
+            <p class="k-copyright">© 2021-<script>document.write(/\d{4}/.exec(Date())[0])</script> | SATOVERSE.IO. All Rights Reserved</p>
+            <br>
+           
+        </div>
+        
+        <!-- Absolute image -->
+        <img class="solar-system" src="/img/bg/solar.svg" alt="">
+    </footer>
+    <!-- Back To Top Button -->
+    <div x-data="initBackToTop()" x-on:scroll.window="scroll($event)" @click="goTop($event)" id="backtotop"><a href="javascript:" :class="{
+        'visible': scrolled,
+        '': !scrolled
+    }"></a></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="./js/bundle.js"></script>
+
+</body>
+
+</html>
